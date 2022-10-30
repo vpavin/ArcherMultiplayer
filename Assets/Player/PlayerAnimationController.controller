@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06cfd5286c41c14e8324df4e7aad716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeUntilBored: 10
-  _numberOfBoredAnimations: 2
+  timeUntilBored: 15
+  numberOfBoredAnimations: 2
 --- !u!1101 &-873734797738293926
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

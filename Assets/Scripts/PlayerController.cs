@@ -71,8 +71,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat(MovementY, movementInput.y);
         _animator.SetBool(IsWalking, movementInput.magnitude > 0);
         transform.position = _targetPosition;
-        
-        Debug.Log(movementInput.magnitude);
     }
     
     void HandleMovement(Vector2 movementInput, bool isAiming)

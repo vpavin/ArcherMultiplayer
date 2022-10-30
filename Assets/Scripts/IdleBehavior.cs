@@ -6,14 +6,16 @@ using UnityEngine.Serialization;
 public class IdleBehavior : StateMachineBehaviour
 {
      [SerializeField]
-     private float _timeUntilBored;
+     private float timeUntilBored;
  
      [SerializeField]
-     private int _numberOfBoredAnimations;
+     private int numberOfBoredAnimations;
  
      private bool _isBored;
      private float _idleTime; 
-     private int _boredAnimation; 
+     private int _boredAnimation;
+     
+     private static readonly int IdleAnimation = Animator.StringToHash("IdleAnimation");
  
      // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
      public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,13 +30,13 @@ public class IdleBehavior : StateMachineBehaviour
          {
              _idleTime += Time.deltaTime;
  
-             if (_idleTime > _timeUntilBored && stateInfo.normalizedTime % 1 < 0.02f) 
+             if (_idleTime > timeUntilBored && stateInfo.normalizedTime % 1 < 0.02f) 
              {
                  _isBored = true;
-                 _boredAnimation = Random.Range(1, _numberOfBoredAnimations + 1);
+                 _boredAnimation = Random.Range(1, numberOfBoredAnimations + 1);
                  _boredAnimation = _boredAnimation * 2 - 1;
  
-                 animator.SetFloat("IdleAnimation", _boredAnimation - 1);
+                 animator.SetFloat(IdleAnimation, _boredAnimation - 1);
              }
          }
          else if (stateInfo.normalizedTime % 1 > 0.98)
@@ -42,7 +44,7 @@ public class IdleBehavior : StateMachineBehaviour
              ResetIdle();
          }
  
-         animator.SetFloat("IdleAnimation", _boredAnimation, 0.2f, Time.deltaTime);
+         animator.SetFloat(IdleAnimation, _boredAnimation, 0.2f, Time.deltaTime);
      }
  
      private void ResetIdle()
