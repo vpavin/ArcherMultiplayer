@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion _targetRotation;
     
     private static readonly int IsWalking = Animator.StringToHash("Walking");
+    private static readonly int IsAiming = Animator.StringToHash("Aiming");
     private static readonly int MovementX = Animator.StringToHash("MovementX");
     private static readonly int MovementY = Animator.StringToHash("MovementY");
 
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat(MovementX, movementInput.x);
         _animator.SetFloat(MovementY, movementInput.y);
         _animator.SetBool(IsWalking, movementInput.magnitude > 0);
+        _animator.SetBool(IsAiming, isAiming);
         transform.position = _targetPosition;
     }
     
